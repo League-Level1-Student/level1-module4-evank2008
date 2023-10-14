@@ -12,6 +12,7 @@ public class TypingTutor implements KeyListener {
 
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
+	JLabel label = new JLabel();
 	char currentLetter;
 
 	char generateRandomLetter() {
@@ -25,11 +26,21 @@ public class TypingTutor implements KeyListener {
 		currentLetter = generateRandomLetter();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JLabel label = new JLabel();
+		
 		label.setText(String.valueOf(currentLetter));
 		label.setFont(label.getFont().deriveFont(28.0f));
 		label.setHorizontalAlignment(JLabel.CENTER);
 		frame.addKeyListener(this);
+		panel.add(label);
+		frame.add(panel);
+		frame.pack();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		currentLetter = generateRandomLetter();
+		label.setText(String.valueOf(currentLetter));
 	}
 
 
@@ -44,14 +55,12 @@ public class TypingTutor implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	if(e.getKeyChar()==currentLetter) {
+		System.out.println("you did it");
 	}
-
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		currentLetter = generateRandomLetter();
-		label.setText(String.valueOf(currentLetter));
+	else {
+		System.out.println("boooo");
+	}
 	}
 	
 }
