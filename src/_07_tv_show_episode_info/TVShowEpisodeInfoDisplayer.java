@@ -1,6 +1,9 @@
 package _07_tv_show_episode_info;
 
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -8,14 +11,36 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class TVShowEpisodeInfoDisplayer {
+public class TVShowEpisodeInfoDisplayer implements ActionListener {
+	JPanel panel = new JPanel();
+	JFrame frame = new JFrame();
+	JButton add = new JButton();
+	JTextField input1 = new JTextField(9);
 	
 	public TVShowEpisodeInfoDisplayer() {
+		frame.add(panel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		panel.add(input1);
+		add.addActionListener(this);
+		add.setText("Search!");
+		panel.add(add);
+		frame.setTitle("tv show season episode counter string tool");
+		frame.setPreferredSize(new Dimension(400,60));
+		frame.pack();
+	}
+@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+	JOptionPane.showMessageDialog(null, getShowEpisodeData(input1.getText()));
 		
 	}
-
 	
 	
 	
@@ -74,4 +99,10 @@ public class TVShowEpisodeInfoDisplayer {
 		
 		return res;
 	}
+
+
+
+
+
+	
 }

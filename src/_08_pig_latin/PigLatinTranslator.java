@@ -1,13 +1,58 @@
 package _08_pig_latin;
 
-public class PigLatinTranslator {
-    /**
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class PigLatinTranslator implements ActionListener {
+    JPanel panel = new JPanel();
+	JFrame frame = new JFrame();
+	JButton tranButton = new JButton();
+	JButton swapButton = new JButton();
+	JTextField input = new JTextField(9);
+	JTextField output = new JTextField(9);
+	String textStorage = null;
+	/**
      * Method to translate a english to pig latin.
      * 
      * @param s
      *            The sentence in English
      * @return The pig latin version
      */
+	public static void main(String[] args) {
+		new PigLatinTranslator();
+	}
+	
+	
+	public PigLatinTranslator() {
+		//the display is made but the actual coding behind the buttons is not.
+		frame.add(panel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		panel.add(input);
+		tranButton.addActionListener(this);
+		tranButton.setText("Translate!");
+		swapButton.setText("Swap");
+		panel.add(tranButton);
+		panel.add(swapButton);
+		panel.add(output);
+		frame.setTitle("pig latin translator-ay");
+		frame.setPreferredSize(new Dimension(450,60));
+		
+		
+		frame.pack();
+	}
+@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
     public static String translateEnglishToPigLatin(String s) {
         String latin = "";
         int i = 0;
