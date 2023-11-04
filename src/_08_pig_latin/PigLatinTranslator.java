@@ -18,6 +18,7 @@ public class PigLatinTranslator implements ActionListener {
 	JTextField input = new JTextField(9);
 	JTextField output = new JTextField(9);
 	String textStorage = null;
+	boolean pigButt = true;
 	/**
      * Method to translate a english to pig latin.
      * 
@@ -31,19 +32,20 @@ public class PigLatinTranslator implements ActionListener {
 	
 	
 	public PigLatinTranslator() {
-		//the display is made but the actual coding behind the buttons is not.
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		panel.add(input);
 		tranButton.addActionListener(this);
-		tranButton.setText("Translate!");
+		tranButton.setText("Translate to Pig Latin!");
 		swapButton.setText("Swap");
 		panel.add(tranButton);
 		panel.add(swapButton);
 		panel.add(output);
 		frame.setTitle("pig latin translator-ay");
-		frame.setPreferredSize(new Dimension(450,60));
+		frame.setPreferredSize(new Dimension(520,60));
+		tranButton.addActionListener(this);
+		swapButton.addActionListener(this);
 		
 		
 		frame.pack();
@@ -51,7 +53,30 @@ public class PigLatinTranslator implements ActionListener {
 @Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==tranButton) {
+			if(pigButt) {
+				output.setText(translateEnglishToPigLatin(input.getText()));
+			}
+			else {
+				output.setText(translatePigLatinToEnglish(input.getText()));
+			}
+		}
+		else if(e.getSource()==swapButton) {
+			if(pigButt) {
+				tranButton.setText("Translate to English!");
+				pigButt = false;
+			}
+			else {
+				pigButt = true;
+				tranButton.setText("Translate to Pig Latin!");
+			}
+			String b1T = input.getText();
+			String b2T = output.getText();
+			input.setText(b2T);
+			output.setText(b1T);
+			
+			frame.pack();
+		}
 	}
     public static String translateEnglishToPigLatin(String s) {
         String latin = "";
